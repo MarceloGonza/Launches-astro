@@ -1,4 +1,6 @@
 ---
+import HeaderButton from "./HeaderButton.astro";
+
 ---
 
 <header class="py-8 px-4 mx-auto max-w-xl lg:py-16 lg:px-6">
@@ -12,7 +14,8 @@
     </div>
 
     <nav class="flex flex-col items-center justify-between w-full text-center md:flex-row">
-        <a class="text-white" href="/">Últimos lanzamientos</a>
-        <a class="text-white" href="/oldest">Los más viejos</a>
+        <HeaderButton class="text-white" href="/">Últimos lanzamientos</a>
+        <HeaderButton class="text-white" href="/about">Sobre el proyecto</a>
+        <HeaderButton class="text-white" href="/oldest">Los más viejos</a>
     </nav>
 </header>
