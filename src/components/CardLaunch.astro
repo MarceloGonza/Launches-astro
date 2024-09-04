@@ -1,7 +1,7 @@
 ---
 interface Props {
     id: string
-    details: string
+    details: string | null
     img: string
     success: boolean
     flightNumber: number
@@ -26,8 +26,8 @@ const launchStatus = success ? "Success" : "Failure"
             class:list={[
                 "text-xs fond-semibold mr-2 px-2.5 py-0.5 rounded",
                 {
-                    "bg-green-400 text-green-900": success,
-                    "bg-red-400 text-red-900": !success,
+                    "bg-green-400 text-green-900": success, //si es true, se aplica esto
+                    "bg-red-400 text-red-900": !success, //si no, este que es false
                 },
             ]}>
             {launchStatus}

@@ -2,36 +2,35 @@
     import { type APISpaceXResponse } from '../types/api'
     import CardLaunch from './CardLaunch.astro'
 
-    const res = await fetch('https://api.spacexdata.com/v5/launches/query', { //el query es para limitar y no traer todo
+    const res = await fetch("https://api.spacexdata.com/v5/launches/query", { //el query es para limitar y no traer todo
         method: "POST",  //se usa asi por el query
         headers: {
-            "Constent-Type": "application/json"
+            "Content-Type": "application/json",
         } ,
         body: JSON.stringify({ //llamada a la api. Javascript nativo
             query: {},
             options: {
                 sort: {
-                    date_unix: "asc"
+                    date_unix: "asc",
                 },
                 limit: 12,
             },
         }),
     })
 
-    const { docs:launches } = await res.json() as APISpaceXResponse
-    console.log(launches)
-    
+    const { docs:launches } = (await res.json()) as APISpaceXResponse
 ---
 
 <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
     {
-    launches.map((launch) => (
+    launches.map(
+        ({ id, links, details, flight_number:flight_number, success}) => (
             <CardLaunch 
-            id={launch.id}
-            img={launch.links.patch.small}
-            details={launch.details}
-            flightNumber={launch.flight_number}
-            success={launch.success}
+            id={id}
+            img={links.patch.small}
+            details={details}
+            flightNumber={flight_number}
+            success={success}
             />
         ))
     }
